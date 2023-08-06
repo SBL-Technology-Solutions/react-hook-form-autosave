@@ -1,4 +1,4 @@
-import { AutoSaveForm } from "./components/AutoSaveForm";
+import { AutoSaveForm } from "@/components/AutoSaveForm";
 
 function page() {
   return (
