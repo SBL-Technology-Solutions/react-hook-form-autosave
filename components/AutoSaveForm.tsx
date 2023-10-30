@@ -10,9 +10,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const formSchema = z.object({
-  name: z.string().nonempty({ message: "Name is required" }),
+  name: z.string().min(1, { message: "Name is required" }),
   email: z.string().email({ message: "Email is required" }),
-  message: z.string().nonempty({ message: "Message is required" }),
+  message: z.string().min(1, { message: "Message is required" }),
 });
 
 const mockedAPICall = async (timeout: number = 2000) => {
