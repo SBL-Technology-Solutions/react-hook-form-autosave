@@ -1,7 +1,7 @@
-import { AutoSaveForm } from "@/components/AutoSaveForm";
+import { AutoSaveFormWithHook } from "@/components/AutoSaveFormWithHook";
 
 function page() {
-  return <AutoSaveForm />;
+  return <AutoSaveFormWithHook />;
 }
 
 export default page;

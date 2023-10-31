@@ -11,7 +11,7 @@ import { Loader2, Send } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export const AutoSaveForm = () => {
+export const AutoSaveFormWithHook = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [submittingOrSaving, setSubmittingOrSaving] = useState<
@@ -31,12 +31,12 @@ export const AutoSaveForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, dirtyFields },
     reset,
+    formState: { errors, isDirty, dirtyFields },
   } = form;
 
   const debouncedValue = useAutoSave(form, 2000, async () => {
-    console.log("isDirty is true, saving form data");
+    console.log("saving form data:", debouncedValue);
     setSubmittingOrSaving("Saving");
     setIsLoading(true);
     //simulate API call and wait 2 seconds
@@ -46,7 +46,6 @@ export const AutoSaveForm = () => {
       title: "Form AutoSaved Successfully!",
       description: <ToastFormState formState={debouncedValue} />,
     });
-    reset({ ...debouncedValue });
     setIsLoading(false);
   });
 
