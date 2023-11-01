@@ -1,9 +1,10 @@
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 import { Toaster } from "@/components/ui/Toaster";
-import "./globals.css";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/Theme-Provider";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "bg-slate-700 p-8")}>
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <main>{children}</main>
-          <Toaster />
-        </ThemeProvider>
+      <body className={cn(inter.className, "bg-slate-700 p-8 dark")}>
+        <Header />
+        <main>{children}</main>
+        <Toaster />
+        <Footer />
       </body>
     </html>
   );

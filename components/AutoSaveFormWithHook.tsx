@@ -1,49 +1,24 @@
 "use client";
 
+import { ToastFormState } from "@/components/ToastFormState";
 import { Button } from "@/components/ui/Button";
 import { useToast } from "@/components/ui/use-toast";
 import { useAutoSave } from "@/hooks/useAutoSave";
+import { FormSchema, formSchema } from "@/lib/schema";
+import { mockedAPICall } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Send } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
-const formSchema = z.object({
-  name: z.string().nonempty({ message: "Name is required" }),
-  email: z.string().email({ message: "Email is required" }),
-  message: z.string().nonempty({ message: "Message is required" }),
-});
-
-const mockedAPICall = async (timeout: number = 2000) => {
-  console.log("mocking an API request");
-  await new Promise((resolve) => setTimeout(resolve, timeout));
-};
-
-const ToastFormState = ({
-  formState,
-}: {
-  formState: z.infer<typeof formSchema>;
-}) => {
-  return (
-    <div className="flex flex-col gap-2 text-sm">
-      {Object.entries(formState).map(([key, value]) => (
-        <span key={key}>
-          {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
-        </span>
-      ))}
-    </div>
-  );
-};
-
-export const AutoSaveForm = () => {
+export const AutoSaveFormWithHook = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [submittingOrSaving, setSubmittingOrSaving] = useState<
     "Submitting" | "Saving"
   >("Saving");
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     mode: "all",
     defaultValues: {
@@ -56,12 +31,12 @@ export const AutoSaveForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, dirtyFields },
     reset,
+    formState: { errors, isDirty, dirtyFields },
   } = form;
 
   const debouncedValue = useAutoSave(form, 2000, async () => {
-    console.log("isDirty is true, saving form data");
+    console.log("saving form data:", debouncedValue);
     setSubmittingOrSaving("Saving");
     setIsLoading(true);
     //simulate API call and wait 2 seconds
@@ -71,11 +46,10 @@ export const AutoSaveForm = () => {
       title: "Form AutoSaved Successfully!",
       description: <ToastFormState formState={debouncedValue} />,
     });
-    reset({ ...debouncedValue });
     setIsLoading(false);
   });
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: FormSchema) => {
     console.log("submitting form data:", data);
     setSubmittingOrSaving("Submitting");
     setIsLoading(true);
@@ -96,7 +70,6 @@ export const AutoSaveForm = () => {
         <span>Dirty Fields: {JSON.stringify(dirtyFields, null, 2)}</span>
         <span>Debounced Value: {JSON.stringify(debouncedValue, null, 2)}</span>
       </div>
-
       <form
         className="flex flex-col gap-4 py-8"
         onSubmit={handleSubmit(onSubmit)}
