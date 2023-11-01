@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDebounce } from "usehooks-ts";
 
-export const AutoSaveFormWithoutHook = () => {
+const AutoSaveFormWithoutHook = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [submittingOrSaving, setSubmittingOrSaving] = useState<
