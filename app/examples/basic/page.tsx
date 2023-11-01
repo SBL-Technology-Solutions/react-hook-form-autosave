@@ -3,7 +3,7 @@
 import { useAutoSave } from "@/hooks/useAutoSave";
 import { useForm } from "react-hook-form";
 
-const Basic = () => {
+const Page = () => {
   const form = useForm<{ name: string }>({
     defaultValues: {
       name: "",
@@ -38,4 +38,4 @@ const Basic = () => {
   );
 };
 
-export default Basic;
+export default Page;
