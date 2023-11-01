@@ -1,3 +1,5 @@
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -20,8 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, "bg-slate-700 p-8 dark")}>
+        <Header />
         <main>{children}</main>
         <Toaster />
+        <Footer />
       </body>
     </html>
   );
