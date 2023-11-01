@@ -6,25 +6,19 @@
 
 ---
 
-<!-- prettier-ignore-start -->
-[![Build Status][build-badge]][build]
-[![MIT License][license-badge]][license]
-[![All Contributors][all-contributors-badge]](#contributors-)
-[![PRs Welcome][prs-badge]][prs]
-[![Code of Conduct][coc-badge]][coc]
-<!-- prettier-ignore-end -->
+## Blog Post and Live Demo
 
-## Live Demo
+The blog post accompanied with this code can be found at our [blog](https://www.sbltechsolutions.com).
 
-A live demo can be found at [https://react-hook-form-autosave.vercel.app/](https://react-hook-form-autosave.vercel.app/)
+A live demo can also be found at [https://react-hook-form-autosave.vercel.app/](https://react-hook-form-autosave.vercel.app/)
 
 ## Installation
 
-- Install the only dependency in addition to React - [react-hook-form](https://github.com/react-hook-form/react-hook-form):
+Install the only dependency in addition to React - [react-hook-form](https://github.com/react-hook-form/react-hook-form):
 
-  ```sh
-  npm install react-hook-form
-  ```
+```sh
+npm install react-hook-form
+```
 
 Copy the code from both [/hooks/useAutoSave.ts](https://github.com/SBL-Technology-Solutions/react-hook-form-autosave/blob/main/hooks/useAutoSave.ts) and [/hooks/useDebounceDeepCompare.ts](https://github.com/SBL-Technology-Solutions/react-hook-form-autosave/blob/main/hooks/useDebounceDeepCompare.tsx) into your project or copy from the below:
 
