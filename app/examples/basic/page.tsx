@@ -17,15 +17,21 @@ const Page = () => {
   });
 
   return (
-    <div>
-      <h1>Basic Example</h1>
+    <div className="min-h-[70vh] container mx-auto px-6">
+      <h1 className="text-2xl font-semibold my-8">Basic Example</h1>
       <p>
         <strong>Debounced Value:</strong> {JSON.stringify(debouncedValue.name)}
       </p>
       <form>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input type="text" {...register("name")} />
+        <div className="flex flex-col gap-2 mt-4">
+          <label className="text-white font-semibold" htmlFor="name">
+            Name
+          </label>
+          <input
+            className="w-full rounded bg-slate-800 px-2 py-1 text-white"
+            type="text"
+            {...register("name")}
+          />
         </div>
       </form>
     </div>
