@@ -11,7 +11,7 @@ import { Loader2, Send } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export const AutoSaveFormWithHook = () => {
+const AutoSaveFormWithHook = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [submittingOrSaving, setSubmittingOrSaving] = useState<
